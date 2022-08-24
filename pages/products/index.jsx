@@ -23,7 +23,7 @@ export default function Products({ products }) {
 }
 export const getServerSideProps = async () => {
   const products = await axios.get(
-    "https://patisserie-eight.vercel.app/api/products"
+    "https://patisserie-iota.vercel.app/api/products"
   );
   return {
     props: { products: products.data.products },

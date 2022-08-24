@@ -16,6 +16,12 @@
     "incremental": true,
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "lib/database.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "lib/database.js",
+    "pages/_app.jsx"
+  ],
   "exclude": ["node_modules"]
 }
