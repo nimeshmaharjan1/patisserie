@@ -31,7 +31,9 @@ const Menu: NextPage<Props> = ({ isMenuOpen, updateIsMenuOpen }) => {
         <Link href="/products" passHref>
           Products
         </Link>
-        <Link href="#">About</Link>
+        <Link href="/about" passHref>
+          About
+        </Link>
         <Link href="#">Services</Link>
         <Link href="#">Contact</Link>
       </div>

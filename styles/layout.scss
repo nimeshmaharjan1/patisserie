@@ -1,5 +1,4 @@
 @mixin font {
-  font-family: "Raleway";
   padding: 0.3rem 0;
   font-size: 1rem;
   cursor: pointer;
@@ -30,7 +29,7 @@ nav {
         display: block;
         width: 0;
         height: 2px;
-        background: white;
+        background: #9b6a4b;
         transition: width 0.3s;
       }
       &:hover::after {

@@ -30,7 +30,9 @@ const Layout: React.FC<Props> = ({ children }) => {
                 </Link>
               </Col>
               <Col>
-                <p>About</p>
+                <Link href="/about" passHref>
+                  <p>About</p>
+                </Link>
               </Col>
               <Col>
                 <p>Contact</p>
