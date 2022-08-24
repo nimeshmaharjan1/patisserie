@@ -1,0 +1,49 @@
+.transitionDiv {
+  background: red;
+  height: 100px;
+  width: 200px;
+  margin: 0 auto;
+}
+
+@keyframes inAnimation {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@keyframes outAnimation {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.menuImage {
+  position: absolute;
+  top: 0;
+  right: 10.8125rem;
+  bottom: 10.8125rem;
+  left: calc(50% + 4rem);
+  z-index: 10;
+  img {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+  }
+}
+@media (max-width: 800px) {
+  .menuImage {
+    display: none;
+  }
+}

@@ -1,0 +1,49 @@
+@mixin font {
+  font-family: "Raleway";
+  padding: 0.3rem 0;
+  font-size: 1rem;
+  cursor: pointer;
+}
+nav {
+  // .nav-links {
+  //   padding-left: 2.5rem;
+  //   padding-right: 2.5rem;
+  // }
+  p {
+    @include font();
+    padding-top: 1rem;
+  }
+  h1 {
+    @include font();
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: #9b6a4b;
+    margin-top: 0.2rem;
+  }
+  .md-screen {
+    display: none;
+    p {
+      font-size: 1.2rem;
+      &::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 2px;
+        background: white;
+        transition: width 0.3s;
+      }
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+  @media screen and (min-width: 768px) {
+    .sm-screen {
+      display: none;
+    }
+    .md-screen {
+      display: flex;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+@mixin flexCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.about {
+  background-color: #151515;
+  .main {
+    @include flexCenter();
+    min-height: calc(100vh - 50px);
+    h1 {
+      padding-left: 2rem;
+      font-size: 4.5rem;
+      font-weight: 600;
+    }
+  }
+  .intro {
+    min-height: 100vh;
+    @include flexCenter();
+    .card {
+      background: black;
+      p {
+        line-height: 1.9;
+      }
+      margin: 0 3rem;
+      padding: 2rem;
+    }
+  }
+}
+.ig {
+  min-height: 100vh;
+  @include flexCenter();
+  h1 {
+    opacity: 0.5;
+    transition: 0.4s;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+@media screen and (min-width: 426px) {
+  .intro {
+    .card {
+      width: 600px;
+      p {
+        font-size: 1.5rem;
+      }
+      padding: 6rem !important;
+    }
+  }
+}

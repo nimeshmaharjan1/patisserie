@@ -1,0 +1,68 @@
+@mixin borderBottom {
+  border-bottom: 3px solid white;
+  padding: 0.8rem 1.5rem;
+}
+.card {
+  border-radius: 6px;
+  border: 3px solid white;
+  width: 320px;
+  cursor: pointer;
+  transition: 0.4s;
+  &:hover {
+    transform: scale(1.01);
+    .cardDesc p {
+      opacity: 1;
+    }
+  }
+  h1 {
+    color: white;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .cardImage {
+    cursor: pointer;
+    @include borderBottom();
+  }
+  .cardTitle {
+    border-top: 3px solid white;
+    @include borderBottom();
+  }
+  .cardDesc {
+    @include borderBottom();
+    height: 190px;
+
+    p {
+      text-transform: uppercase;
+      margin: 0;
+      font-family: "Raleway";
+      opacity: 0.5;
+      font-size: 0.8rem;
+      transition: 0.4s;
+    }
+  }
+  .price {
+    @include borderBottom();
+
+    h1 {
+      text-align: end;
+    }
+  }
+  .cardAction {
+    background-color: rgb(31, 31, 31);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-align: end;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: "Raleway";
+    font-size: 1rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+// @media screen and (min-width: 430px) {
+//   .card {
+//     width: 400px;
+//   }
+// }

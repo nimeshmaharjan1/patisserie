@@ -1,0 +1,123 @@
+.products {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  padding-top: 1.2rem;
+  padding-bottom: 3rem;
+}
+
+@media screen and (min-width: 430px) {
+  .products {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+.single-product {
+  p {
+    font-size: 0.8rem;
+  }
+  margin-top: 1rem;
+  .left-side {
+    position: relative;
+  }
+  .right-side {
+    padding: 0.5rem 1rem;
+    .heading {
+      h2 {
+        text-transform: capitalize;
+        font-family: "Raleway";
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+      p {
+        opacity: 0.5;
+      }
+    }
+    .desc {
+      font-size: 0.8rem;
+      span {
+        display: block;
+      }
+    }
+    .veg {
+      margin-top: 0.7rem;
+      width: 20px;
+      height: 20px;
+      background-color: rgb(254, 51, 51);
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .non-veg {
+      margin-top: 0.7rem;
+      width: 20px;
+      height: 20px;
+      background-color: rgb(90, 144, 90);
+      border-radius: 50%;
+      display: inline-block;
+      margin-left: 0.5rem;
+    }
+    .price {
+      padding-top: 0.5rem;
+      font-weight: bold;
+      color: rgb(255, 234, 129);
+    }
+    .ant-btn-primary {
+      background: #9b6a4b;
+      border-color: #9b6a4b;
+      transition: 0.3s;
+      &:hover {
+        background: #9b6a4bea;
+        border-color: #9b6a4bea;
+      }
+    }
+    .ingredients {
+      margin-top: 0.5rem;
+    }
+    .nutrition {
+      border-bottom: 1px solid white;
+      margin-bottom: 0.3rem;
+    }
+  }
+}
+@media screen and (min-width: 426px) {
+  .single-product {
+    p {
+      font-size: 1.05rem;
+    }
+    .right-side {
+      .price {
+        font-size: 1.1rem;
+      }
+      .heading {
+        h2 {
+          font-size: 1.8rem;
+        }
+      }
+      .desc {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
+@media screen and (min-width: 1025px) {
+  .single-product {
+    p {
+      font-size: 1.13rem;
+    }
+    .right-side {
+      .price {
+        font-size: 1.2rem;
+      }
+      .heading {
+        h2 {
+          font-size: 2rem;
+        }
+      }
+      .desc {
+        font-size: 1.13rem;
+      }
+    }
+  }
+}
