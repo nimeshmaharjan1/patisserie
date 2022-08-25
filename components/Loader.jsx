@@ -5,7 +5,6 @@ const Loader = ({ loading }) => {
   return (
     <div className={loading ? "loader" : undefined}>
       <PulseLoader
-        ariaLabel="triangle-loading"
         loading={loading}
         color="#fff"
         size={20}

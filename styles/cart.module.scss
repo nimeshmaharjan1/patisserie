@@ -1,0 +1,60 @@
+.cart {
+  min-height: 100vh;
+  background-color: #151515;
+  h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    opacity: 0.5;
+    padding-left: 0.5rem;
+  }
+}
+.card {
+  background-color: black;
+  border-radius: 12px;
+  padding-bottom: 1rem;
+  //   .cardRow {
+  //     height: 150px;
+  //   }
+  img {
+    border-radius: 12px;
+  }
+  .details,
+  .quantity {
+    padding: 0 1rem;
+    h2 {
+      text-transform: capitalize;
+    }
+    > p > span {
+      opacity: 0.5;
+    }
+  }
+  .quantity {
+    .control {
+      display: inline-block;
+      width: 100px;
+      height: 35px;
+      border: 1px solid rgb(68, 49, 103);
+      margin-left: 0.5rem;
+      position: relative;
+      color: white;
+      opacity: 1;
+      .plus,
+      .minus,
+      .qty {
+        position: absolute;
+        opacity: 1;
+        color: white;
+        top: 0.3rem;
+      }
+      .qty {
+        left: 46%;
+      }
+      .plus {
+        left: 0.5rem;
+      }
+      .minus {
+        right: 0.5rem;
+      }
+    }
+  }
+}

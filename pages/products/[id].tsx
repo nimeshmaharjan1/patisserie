@@ -2,15 +2,36 @@ import { Button, Col, Row } from "antd";
 import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import Layout from "../../components/Layout";
+import { useAppDispatch } from "../../lib/hooks";
 import { Product } from "../../lib/interfaces";
+import {
+  addToCart,
+  CartItem,
+  selectCartItems,
+} from "../../store/cart/cartSlice";
 
 interface Props {
   product: Product;
 }
 
 const Product: NextPage<Props> = ({ product }) => {
+  const cartItems = useSelector(selectCartItems);
+  const dispatch = useAppDispatch();
+  const handleAddToCart = (product: Product) => {
+    const { _id, name, images, price } = product;
+    const item = {
+      id: _id,
+      name,
+      quantity: 1,
+      image: images[0].src,
+      price,
+    } as CartItem;
+    console.log({ item });
+    dispatch(addToCart(item));
+  };
   return (
     <Layout>
       <Row className="single-product">
@@ -47,7 +68,12 @@ const Product: NextPage<Props> = ({ product }) => {
               <p className="price">${product.price}</p>
             </Col>
             <Col xs={24} style={{ marginTop: "0.6rem" }}>
-              <Button type="primary" size="large" block>
+              <Button
+                type="primary"
+                size="large"
+                block
+                onClick={() => handleAddToCart(product)}
+              >
                 Add To Cart
               </Button>
             </Col>
