@@ -30,12 +30,25 @@ const initialState = {
       : ([] as CartItem[]),
     shippingAddress: undefined,
   },
+  total: 0,
 };
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
+    cartTotal: (state) => {
+      if (state.cart.cartItems.length > 0) {
+        if (state.cart.cartItems.length === 1) {
+          state.total = Number(state.cart.cartItems[0].price);
+        } else {
+          const sum = state.cart.cartItems.reduce(
+            (a: any, b: any) => Number(a.price) + Number(b.price)
+          );
+          state.total = sum;
+        }
+      }
+    },
     addToCart: (state, action: PayloadAction<CartItem>) => {
       console.log({ action });
       const newItem = action.payload;
@@ -54,7 +67,8 @@ export const cartSlice = createSlice({
     },
   },
 });
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, cartTotal } = cartSlice.actions;
 export const selectCartItems = (state: RootState) =>
   state.cartStore.cart.cartItems;
+export const selectCartTotal = (state: RootState) => state.cartStore.total;
 export default cartSlice.reducer;

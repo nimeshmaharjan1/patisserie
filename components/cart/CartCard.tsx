@@ -22,21 +22,33 @@ const CartCard: React.FC<Props> = ({ cartItem }) => {
         </Col>
         <Col xs={24} lg={6} className={styles.details}>
           <h2>{cartItem.name.toLocaleLowerCase()}</h2>
-          <p>
-            <span>Category: </span>Crossiant
+          <p style={{ marginTop: "0.5rem" }}>
+            <span>Category</span>
+            <br />
+            Crossiant
           </p>
-          <p>
-            <span>Delivery Time: </span>2 days
+          <p style={{ marginTop: "0.5rem" }}>
+            <span>Delivery Time</span>
+            <br />2 days
           </p>
         </Col>
         <Col xs={24} lg={6} className={styles.quantity}>
-          <p className="row center">
-            <span>Quantity: </span>
+          <p>
+            <span style={{ opacity: "0.5" }}>Quantity</span>
+            <br />
             <span className={styles.control}>
               <span className={styles.plus}>+</span>
               <span className={styles.qty}>1</span>
               <span className={styles.minus}>-</span>
             </span>
+          </p>
+        </Col>
+        <Col xs={24} lg={6} className={styles.total}>
+          <p>
+            <span style={{ opacity: "0.5", marginRight: "0.5rem" }}>
+              Total:
+            </span>
+            ${cartItem.price}
           </p>
         </Col>
       </Row>

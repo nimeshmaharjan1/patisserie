@@ -38,7 +38,9 @@ const Layout: React.FC<Props> = ({ children }) => {
                 <p>Contact</p>
               </Col>
               <Col>
-                <p>Cart</p>
+                <Link href="/cart" passHref>
+                  <p>Cart</p>
+                </Link>
               </Col>
             </Row>
             <Row justify="end" className="sm-screen" align="middle">

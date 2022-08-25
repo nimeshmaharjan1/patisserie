@@ -10,6 +10,7 @@ import { Product } from "../../lib/interfaces";
 import {
   addToCart,
   CartItem,
+  cartTotal,
   selectCartItems,
 } from "../../store/cart/cartSlice";
 
@@ -30,6 +31,7 @@ const Product: NextPage<Props> = ({ product }) => {
       price,
     } as CartItem;
     console.log({ item });
+    dispatch(cartTotal());
     dispatch(addToCart(item));
   };
   return (
