@@ -1,6 +1,7 @@
 import { MenuOutlined } from "@ant-design/icons";
-import { Button, Col, Row } from "antd";
+import { Button, Col, Form, Input, Modal, Row } from "antd";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CartCard from "../../components/cart/CartCard";
@@ -15,19 +16,50 @@ import {
 import styles from "../../styles/cart.module.scss";
 
 const Cart = () => {
-  const cartItems = useSelector(selectCartItems);
+  const [isCartEmpty, setIsCartEmpty] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCheckoutMenuOpen, setIsCheckoutMenuOpen] = useState(false);
+  const [isCheckoutLoading, setIsCheckoutLoading] = useState(false);
+  const openCheckout = () => {
+    setIsCheckoutMenuOpen(true);
+  };
+  const cartItems: CartItem[] = useSelector(selectCartItems);
   const total = useSelector(selectCartTotal);
   const dispatch = useAppDispatch();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const openMenu = (arg: boolean) => {
     setIsMenuOpen(arg);
   };
-  //   useEffect(() => {
-  //     dispatch(cartTotal());
-  //   }, []);
+  const router = useRouter();
+  const handleEmptyCart = () => {
+    router.push("/products");
+  };
+  useEffect(() => {
+    console.log("Cart total", total);
+    if (cartItems.length < 1) {
+      setIsCartEmpty(true);
+    }
+  }, [cartItems.length, dispatch]);
+  const closeCheckout = () => {
+    setIsCheckoutMenuOpen(false);
+  };
+  const submitCheckout = (values: any) => {
+    console.log({ values });
+    setIsCheckoutLoading(true);
+    // setIsCheckoutMenuOpen(false);
+  };
   return (
     <>
       <section className={styles.cart}>
+        <Modal
+          title="Cart Empty"
+          visible={isCartEmpty}
+          closable={false}
+          onOk={handleEmptyCart}
+        >
+          <p style={{ color: "black" }}>
+            Please add some items to the cart to proceed.
+          </p>
+        </Modal>
         <nav className="container" style={{ padding: "1rem 0.5rem" }}>
           <Row justify="space-between" className="nav-links">
             <Col>
@@ -115,13 +147,55 @@ const Cart = () => {
                   <p style={{ fontWeight: "bold" }}>${total + 5}</p>
                 </Col>
               </Row>
-              <Button type="primary" size="large" block>
-                Checkout
+              <Button
+                type="primary"
+                size="large"
+                block
+                style={{ fontWeight: "bold" }}
+                onClick={openCheckout}
+              >
+                CHECKOUT
               </Button>
             </Col>
           </Row>
         </div>
         <Menu isMenuOpen={isMenuOpen} updateIsMenuOpen={openMenu}></Menu>
+        <Modal
+          title="Checkout"
+          visible={isCheckoutMenuOpen}
+          onCancel={closeCheckout}
+          onOk={submitCheckout}
+          confirmLoading={isCheckoutLoading}
+          footer={null}
+        >
+          <Form
+            labelCol={{ span: 4 }}
+            wrapperCol={{ span: 18 }}
+            initialValues={{ remember: true }}
+            onFinish={submitCheckout}
+          >
+            <Form.Item label="Name" name="fullName">
+              <Input></Input>
+            </Form.Item>
+            <Form.Item label="Address" name="address">
+              <Input></Input>
+            </Form.Item>
+            <Form.Item label="City" name="city">
+              <Input></Input>
+            </Form.Item>
+            <Form.Item label="Phone" name="phoneNumber">
+              <Input></Input>
+            </Form.Item>
+            <Form.Item label="E-mail" name="email">
+              <Input></Input>
+            </Form.Item>
+            <Form.Item wrapperCol={{ offset: 4, span: 18 }}>
+              <Button type="primary" htmlType="submit" block>
+                Submit
+              </Button>
+            </Form.Item>
+          </Form>
+        </Modal>
       </section>
     </>
   );

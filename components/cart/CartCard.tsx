@@ -44,7 +44,7 @@ const CartCard: React.FC<Props> = ({ cartItem }) => {
           </p>
         </Col>
         <Col xs={24} lg={6} className={styles.total}>
-          <p>
+          <p style={{ paddingBottom: "0.5rem" }}>
             <span style={{ opacity: "0.5", marginRight: "0.5rem" }}>
               Total:
             </span>

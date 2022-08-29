@@ -1,4 +1,4 @@
-import { Button, Col, Row } from "antd";
+import { Button, Col, message, Row } from "antd";
 import axios from "axios";
 import { GetServerSideProps, NextPage } from "next";
 import Image from "next/image";
@@ -12,6 +12,7 @@ import {
   CartItem,
   cartTotal,
   selectCartItems,
+  selectCartTotal,
 } from "../../store/cart/cartSlice";
 
 interface Props {
@@ -20,6 +21,7 @@ interface Props {
 
 const Product: NextPage<Props> = ({ product }) => {
   const cartItems = useSelector(selectCartItems);
+  const total = useSelector(selectCartTotal);
   const dispatch = useAppDispatch();
   const handleAddToCart = (product: Product) => {
     const { _id, name, images, price } = product;
@@ -30,9 +32,9 @@ const Product: NextPage<Props> = ({ product }) => {
       image: images[0].src,
       price,
     } as CartItem;
-    console.log({ item });
-    dispatch(cartTotal());
     dispatch(addToCart(item));
+    dispatch(cartTotal(item));
+    message.success("Item has been added to the cart successfully");
   };
   return (
     <Layout>

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 import Cookies from "js-cookie";
 import { RootState } from "../store";
 
@@ -28,24 +28,33 @@ const initialState = {
     cartItems: Cookies.get("cartItems")
       ? JSON.parse(Cookies.get("cartItems") as any)
       : ([] as CartItem[]),
-    shippingAddress: undefined,
+    shippingAddress: {} as ShippingAddress,
   },
-  total: 0,
+  total: Cookies.get("cartTotal") ? Number(Cookies.get("cartTotal")) : 0,
 };
 
 export const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
-    cartTotal: (state) => {
+    cartTotal: (state, action) => {
+      console.log("length", state.cart.cartItems.length);
       if (state.cart.cartItems.length > 0) {
         if (state.cart.cartItems.length === 1) {
-          state.total = Number(state.cart.cartItems[0].price);
+          state.total = Number(action.payload.price);
+          Cookies.set("cartTotal", JSON.stringify(state.total));
         } else {
-          const sum = state.cart.cartItems.reduce(
-            (a: any, b: any) => Number(a.price) + Number(b.price)
-          );
-          state.total = sum;
+          const sum = current(state.cart.cartItems).reduce((a: any, b: any) => {
+            console.log({ a }, { b });
+            if (typeof a === "number") {
+              return a + Number(b.price);
+            }
+            console.log("type", typeof a);
+            return Number(a.price) + Number(b.price);
+          });
+          console.log("sum", sum.toFixed(2));
+          state.total = sum.toFixed(2);
+          Cookies.set("cartTotal", JSON.stringify(state.total));
         }
       }
     },
