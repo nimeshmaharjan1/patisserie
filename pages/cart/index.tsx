@@ -34,11 +34,11 @@ const Cart = () => {
     router.push("/products");
   };
   useEffect(() => {
-    console.log("Cart total", total);
+    console.log("Cart total", cartItems);
     if (cartItems.length < 1) {
       setIsCartEmpty(true);
     }
-  }, [cartItems.length, dispatch]);
+  }, [cartItems.length, dispatch, cartItems]);
   const closeCheckout = () => {
     setIsCheckoutMenuOpen(false);
   };
